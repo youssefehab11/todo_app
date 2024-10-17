@@ -11,7 +11,7 @@ class TaskItemBG extends StatelessWidget {
       children: [
         Expanded(
           child: Container(
-            height: itemHeight,
+            height: taskItemHeight,
             decoration: BoxDecoration(
                 color: ColorsManager.redColor,
                 borderRadius: BorderRadius.circular(15)),
@@ -19,7 +19,7 @@ class TaskItemBG extends StatelessWidget {
         ),
         Expanded(
           child: Container(
-            height: itemHeight,
+            height: taskItemHeight,
             decoration: BoxDecoration(
                 color: Theme.of(context).primaryColor,
                 borderRadius: BorderRadius.circular(15)),

@@ -1,5 +1,6 @@
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_app/core/utils/styles.dart';
 
 class Calendar extends StatelessWidget {
   const Calendar({super.key});
@@ -16,7 +17,10 @@ class Calendar extends StatelessWidget {
         headerProps: const EasyHeaderProps(showHeader: false),
         dayProps: EasyDayProps(
           todayStyle: CustomDayStyle(
-              context: context, isSelected: false, hasBorder: true),
+            context: context,
+            isSelected: false,
+            hasBorder: true,
+          ),
           dayStructure: DayStructure.dayStrDayNum,
           activeDayStyle: CustomDayStyle(
             context: context,
@@ -46,10 +50,10 @@ class CustomDayStyle extends DayStyle {
                 : null,
           ),
           dayNumStyle: isSelected
-              ? Theme.of(context).textTheme.labelSmall
-              : Theme.of(context).textTheme.titleSmall,
+              ? AppTextStyles.text15WeightBold.copyWith(color: Theme.of(context).primaryColor)
+              : AppTextStyles.text15WeightBold,
           dayStrStyle: isSelected
-              ? Theme.of(context).textTheme.labelSmall
-              : Theme.of(context).textTheme.titleSmall,
+              ? AppTextStyles.text15WeightBold.copyWith(color: Theme.of(context).primaryColor)
+              : AppTextStyles.text15WeightBold,
         );
 }

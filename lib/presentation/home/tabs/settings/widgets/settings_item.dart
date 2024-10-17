@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/core/utils/styles.dart';
 
 class SettingsItem extends StatelessWidget {
   final String label;
   final String firstOption;
   final String secondOption;
+
   const SettingsItem({
     super.key,
     required this.label,
@@ -20,7 +22,7 @@ class SettingsItem extends StatelessWidget {
         children: [
           Text(
             label,
-            style: Theme.of(context).textTheme.displayMedium,
+            style: AppTextStyles.text18WeightBold,
           ),
           const SizedBox(
             height: 8,
@@ -30,10 +32,9 @@ class SettingsItem extends StatelessWidget {
             initialSelection: firstOption,
             trailingIcon: const Icon(Icons.keyboard_arrow_down),
             width: MediaQuery.sizeOf(context).width - 20,
-            textStyle: Theme.of(context)
-                .textTheme
-                .labelSmall
-                ?.copyWith(fontWeight: FontWeight.normal),
+            textStyle: AppTextStyles.text16WeightNormal.copyWith(
+              color: Theme.of(context).primaryColor,
+            ),
             inputDecorationTheme: InputDecorationTheme(
               fillColor: Theme.of(context).primaryColorLight,
               filled: true,
@@ -43,9 +44,23 @@ class SettingsItem extends StatelessWidget {
               ),
               suffixIconColor: Theme.of(context).primaryColor,
             ),
-            dropdownMenuEntries:  [
-              DropdownMenuEntry(value: firstOption, label: firstOption),
-              DropdownMenuEntry(value: secondOption, label: secondOption)
+            dropdownMenuEntries: [
+              DropdownMenuEntry(
+                value: firstOption,
+                label: firstOption,
+                style: const ButtonStyle(
+                  textStyle:
+                      WidgetStatePropertyAll(AppTextStyles.text16WeightNormal),
+                ),
+              ),
+              DropdownMenuEntry(
+                value: secondOption,
+                label: secondOption,
+                style: const ButtonStyle(
+                  textStyle:
+                      WidgetStatePropertyAll(AppTextStyles.text16WeightNormal),
+                ),
+              )
             ],
           )
         ],

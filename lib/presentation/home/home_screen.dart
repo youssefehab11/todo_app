@@ -16,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
     TasksTab(),
     SettingsTab(),
   ];
-  String appBarTitle = 'Tasks';
+  String appBarTitle = 'To Do List';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
           onTap: (value){
             selectedIndex = value;
-            appBarTitle = value == 0 ? 'Tasks': 'Settings';
+            appBarTitle = value == 0 ? 'To Do List': 'Settings';
             setState(() {});
           },
         ),
