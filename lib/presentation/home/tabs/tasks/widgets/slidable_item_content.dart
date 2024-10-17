@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/core/utils/constants.dart';
+import 'package:todo_app/core/utils/styles.dart';
 
 class SlidableItemContent extends StatelessWidget {
   const SlidableItemContent({super.key});
@@ -7,7 +8,7 @@ class SlidableItemContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: itemHeight,
+      height: taskItemHeight,
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColorLight,
         borderRadius: BorderRadius.circular(15),
@@ -23,28 +24,28 @@ class SlidableItemContent extends StatelessWidget {
               color: Theme.of(context).primaryColor,
             ),
           ),
-          Expanded(
+          const Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   'Play Basketball',
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: AppTextStyles.text22WeightBold,
                 ),
-                const SizedBox(
+                SizedBox(
                   height: 4,
                 ),
                 Row(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.schedule,
-                      size: 14,
+                      size: 16,
                     ),
-                    const SizedBox(width: 4),
+                    SizedBox(width: 4),
                     Text(
                       '10:30 AM',
-                      style: Theme.of(context).textTheme.displaySmall,
+                      style: AppTextStyles.text16WeightNormal,
                     )
                   ],
                 )
