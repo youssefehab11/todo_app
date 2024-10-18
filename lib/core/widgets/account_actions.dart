@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/core/utils/helper_functions.dart';
 import 'package:todo_app/core/utils/styles.dart';
 
 class AccountActions extends StatelessWidget {
@@ -19,7 +20,7 @@ class AccountActions extends StatelessWidget {
       children: [
         Text(
           labelText,
-          style: LightTextStyles.text16WeightNormal,
+          style: checkCurrentTheme(context) ? LightTextStyles.text16WeightNormal : DarkTextStyles.text16WeightNormal,
         ),
         TextButton(
           onPressed: onPressed,

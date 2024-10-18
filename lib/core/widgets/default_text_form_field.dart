@@ -23,6 +23,7 @@ class DefaultTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
     return TextFormField(
       controller: controller,
       validator: validator,
@@ -35,15 +36,15 @@ class DefaultTextFormField extends StatelessWidget {
         fontWeight: FontWeight.normal,
         fontFamily: FontsManager.poppins,
       ),
-      cursorColor: Theme.of(context).primaryColor,
+      cursorColor: theme.primaryColor,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: LightTextStyles.text18WeightNormal,
-        enabledBorder: TextFormFieldBorderStyle(Theme.of(context).colorScheme.primary),
-        focusedBorder: TextFormFieldBorderStyle(Theme.of(context).primaryColor),
+        enabledBorder: TextFormFieldBorderStyle(theme.colorScheme.primary),
+        focusedBorder: TextFormFieldBorderStyle(theme.primaryColor),
         errorBorder: TextFormFieldBorderStyle(Colors.red),
         filled: true,
-        fillColor: Theme.of(context).colorScheme.primary,
+        fillColor: theme.colorScheme.primary,
       ),
     );
   }

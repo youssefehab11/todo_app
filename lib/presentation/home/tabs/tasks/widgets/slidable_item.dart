@@ -8,6 +8,7 @@ class SlidableItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData theme =Theme.of(context);
     return ClipRRect(
       borderRadius: BorderRadius.circular(15),
       clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -34,7 +35,7 @@ class SlidableItem extends StatelessWidget {
               onPressed: (context) {},
               //borderRadius: BorderRadius.horizontal(left: Radius.circular(15)),
               autoClose: true,
-              backgroundColor: Theme.of(context).primaryColor,
+              backgroundColor: theme.primaryColor,
               icon: Icons.edit,
               label: 'Edit',
             )
