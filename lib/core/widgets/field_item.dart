@@ -26,7 +26,7 @@ class InputFieldItem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: AppTextStyles.text18WeightBold,),
+        Text(label, style: LightTextStyles.text18WeightBold,),
         const SizedBox(height: 8,),
         DefaultTextFormField(
           hintText: hintText,

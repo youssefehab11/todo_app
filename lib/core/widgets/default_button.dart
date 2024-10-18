@@ -24,7 +24,7 @@ class DefaultButton extends StatelessWidget {
       minWidth: double.infinity,
       child: Text(
         btnText,
-        style: AppTextStyles.text18WeightNormal.copyWith(color: Colors.white),
+        style: LightTextStyles.text18WeightNormal.copyWith(color: Colors.white),
       ),
     );
   }

@@ -22,7 +22,7 @@ class SettingsItem extends StatelessWidget {
         children: [
           Text(
             label,
-            style: AppTextStyles.text18WeightBold,
+            style: LightTextStyles.text18WeightBold,
           ),
           const SizedBox(
             height: 8,
@@ -32,25 +32,17 @@ class SettingsItem extends StatelessWidget {
             initialSelection: firstOption,
             trailingIcon: const Icon(Icons.keyboard_arrow_down),
             width: MediaQuery.sizeOf(context).width - 20,
-            textStyle: AppTextStyles.text16WeightNormal.copyWith(
+            textStyle: LightTextStyles.text16WeightNormal.copyWith(
               color: Theme.of(context).primaryColor,
             ),
-            inputDecorationTheme: InputDecorationTheme(
-              fillColor: Theme.of(context).primaryColorLight,
-              filled: true,
-              outlineBorder: BorderSide(color: Theme.of(context).primaryColor),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Theme.of(context).primaryColor),
-              ),
-              suffixIconColor: Theme.of(context).primaryColor,
-            ),
+
             dropdownMenuEntries: [
               DropdownMenuEntry(
                 value: firstOption,
                 label: firstOption,
                 style: const ButtonStyle(
                   textStyle:
-                      WidgetStatePropertyAll(AppTextStyles.text16WeightNormal),
+                      WidgetStatePropertyAll(LightTextStyles.text16WeightNormal),
                 ),
               ),
               DropdownMenuEntry(
@@ -58,7 +50,7 @@ class SettingsItem extends StatelessWidget {
                 label: secondOption,
                 style: const ButtonStyle(
                   textStyle:
-                      WidgetStatePropertyAll(AppTextStyles.text16WeightNormal),
+                      WidgetStatePropertyAll(LightTextStyles.text16WeightNormal),
                 ),
               )
             ],

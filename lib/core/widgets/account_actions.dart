@@ -19,13 +19,13 @@ class AccountActions extends StatelessWidget {
       children: [
         Text(
           labelText,
-          style: AppTextStyles.text16WeightNormal,
+          style: LightTextStyles.text16WeightNormal,
         ),
         TextButton(
           onPressed: onPressed,
           child: Text(
             btnText,
-            style: AppTextStyles.text16WeightNormal
+            style: LightTextStyles.text16WeightNormal
                 .copyWith(color: Theme.of(context).primaryColor),
           ),
         )

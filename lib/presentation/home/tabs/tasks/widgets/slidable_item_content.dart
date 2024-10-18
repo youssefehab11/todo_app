@@ -10,7 +10,7 @@ class SlidableItemContent extends StatelessWidget {
     return Container(
       height: taskItemHeight,
       decoration: BoxDecoration(
-        color: Theme.of(context).primaryColorLight,
+        color: Theme.of(context).colorScheme.primary,
         borderRadius: BorderRadius.circular(15),
       ),
       child: Row(
@@ -31,7 +31,7 @@ class SlidableItemContent extends StatelessWidget {
               children: [
                 Text(
                   'Play Basketball',
-                  style: AppTextStyles.text22WeightBold,
+                  style: LightTextStyles.text22WeightBold,
                 ),
                 SizedBox(
                   height: 4,
@@ -45,7 +45,7 @@ class SlidableItemContent extends StatelessWidget {
                     SizedBox(width: 4),
                     Text(
                       '10:30 AM',
-                      style: AppTextStyles.text16WeightNormal,
+                      style: LightTextStyles.text16WeightNormal,
                     )
                   ],
                 )
