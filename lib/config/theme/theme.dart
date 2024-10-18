@@ -93,6 +93,7 @@ class AppTheme {
     ),
     dropdownMenuTheme: const DropdownMenuThemeData(
       inputDecorationTheme: InputDecorationTheme(
+
         fillColor: ColorsManager.darkColor,
         filled: true,
         outlineBorder: BorderSide(color: ColorsManager.primaryColor),

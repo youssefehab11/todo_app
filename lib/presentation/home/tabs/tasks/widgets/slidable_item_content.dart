@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/core/utils/constants.dart';
+import 'package:todo_app/core/utils/helper_functions.dart';
 import 'package:todo_app/core/utils/styles.dart';
 
 class SlidableItemContent extends StatelessWidget {
@@ -7,6 +8,8 @@ class SlidableItemContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+    ThemeData theme = Theme.of(context);
     return Container(
       height: taskItemHeight,
       decoration: BoxDecoration(
@@ -21,19 +24,19 @@ class SlidableItemContent extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 16),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              color: Theme.of(context).primaryColor,
+              color: theme.primaryColor,
             ),
           ),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'Play Basketball',
                   style: LightTextStyles.text22WeightBold,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 4,
                 ),
                 Row(
@@ -41,11 +44,12 @@ class SlidableItemContent extends StatelessWidget {
                     Icon(
                       Icons.schedule,
                       size: 16,
+                      color: checkCurrentTheme(context) ? Colors.black : Colors.white ,
                     ),
-                    SizedBox(width: 4),
+                    const SizedBox(width: 4),
                     Text(
                       '10:30 AM',
-                      style: LightTextStyles.text16WeightNormal,
+                      style: checkCurrentTheme(context) ? LightTextStyles.text16WeightNormal : DarkTextStyles.text16WeightNormal,
                     )
                   ],
                 )
@@ -58,7 +62,7 @@ class SlidableItemContent extends StatelessWidget {
             margin: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: Theme.of(context).primaryColor,
+              color: theme.primaryColor,
             ),
             child: const Icon(
               Icons.check,
