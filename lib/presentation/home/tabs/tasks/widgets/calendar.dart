@@ -50,10 +50,10 @@ class CustomDayStyle extends DayStyle {
                 : null,
           ),
           dayNumStyle: isSelected
-              ? AppTextStyles.text15WeightBold.copyWith(color: Theme.of(context).primaryColor)
-              : AppTextStyles.text15WeightBold,
+              ? LightTextStyles.text15WeightBold.copyWith(color: Theme.of(context).primaryColor)
+              : LightTextStyles.text15WeightBold,
           dayStrStyle: isSelected
-              ? AppTextStyles.text15WeightBold.copyWith(color: Theme.of(context).primaryColor)
-              : AppTextStyles.text15WeightBold,
+              ? LightTextStyles.text15WeightBold.copyWith(color: Theme.of(context).primaryColor)
+              : LightTextStyles.text15WeightBold,
         );
 }

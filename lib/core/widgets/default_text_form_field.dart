@@ -38,12 +38,12 @@ class DefaultTextFormField extends StatelessWidget {
       cursorColor: Theme.of(context).primaryColor,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: AppTextStyles.text18WeightNormal,
-        enabledBorder: TextFormFieldBorderStyle(Colors.white),
+        hintStyle: LightTextStyles.text18WeightNormal,
+        enabledBorder: TextFormFieldBorderStyle(Theme.of(context).colorScheme.primary),
         focusedBorder: TextFormFieldBorderStyle(Theme.of(context).primaryColor),
         errorBorder: TextFormFieldBorderStyle(Colors.red),
         filled: true,
-        fillColor: Colors.white,
+        fillColor: Theme.of(context).colorScheme.primary,
       ),
     );
   }
