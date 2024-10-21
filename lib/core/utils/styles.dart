@@ -89,6 +89,6 @@ class DarkTextStyles {
     fontFamily: FontsManager.inter,
     fontWeight: FontWeight.normal,
     fontSize: 18,
-    color: ColorsManager.textGrayColor,
+    color: Colors.white,
   );
 }

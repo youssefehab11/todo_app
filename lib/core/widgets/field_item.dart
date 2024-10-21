@@ -30,7 +30,7 @@ class InputFieldItem extends StatelessWidget {
       children: [
         Text(
           label,
-          style: checkCurrentTheme(context)
+          style: isLight(context)
               ? LightTextStyles.text18WeightBold
               : DarkTextStyles.text18WeightBold,
         ),

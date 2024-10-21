@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/core/utils/fonts_manager.dart';
+import 'package:todo_app/core/utils/helper_functions.dart';
 import 'package:todo_app/core/utils/styles.dart';
 
 typedef Validator = String? Function(String?)?;
@@ -30,21 +30,16 @@ class DefaultTextFormField extends StatelessWidget {
       obscureText: isObscure,
       keyboardType: keyboardType,
       textInputAction: textInputAction,
-      style: const TextStyle(
-        color: Colors.black,
-        fontSize: 18,
-        fontWeight: FontWeight.normal,
-        fontFamily: FontsManager.poppins,
-      ),
+      style: isLight(context) ? LightTextStyles.text18WeightNormal.copyWith(color: Colors.black) : DarkTextStyles.text18WeightNormal,
       cursorColor: theme.primaryColor,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: LightTextStyles.text18WeightNormal,
-        enabledBorder: TextFormFieldBorderStyle(theme.colorScheme.primary),
+        enabledBorder: TextFormFieldBorderStyle(theme.primaryColorLight),
         focusedBorder: TextFormFieldBorderStyle(theme.primaryColor),
         errorBorder: TextFormFieldBorderStyle(Colors.red),
         filled: true,
-        fillColor: theme.colorScheme.primary,
+        fillColor: theme.primaryColorLight,
       ),
     );
   }
