@@ -28,7 +28,7 @@ class SettingsItem extends StatelessWidget {
         children: [
           Text(
             label,
-            style: checkCurrentTheme(context)
+            style: isLight(context)
                 ? LightTextStyles.text18WeightBold
                 : DarkTextStyles.text18WeightBold,
           ),
@@ -49,7 +49,7 @@ class SettingsItem extends StatelessWidget {
                 label: firstOption,
                 labelWidget: Text(
                   firstOption,
-                  style: checkCurrentTheme(context)
+                  style: isLight(context)
                       ? LightTextStyles.text16WeightNormal
                       : DarkTextStyles.text16WeightNormal,
                 ),
@@ -59,7 +59,7 @@ class SettingsItem extends StatelessWidget {
                 label: secondOption,
                 labelWidget: Text(
                   secondOption,
-                  style: checkCurrentTheme(context)
+                  style: isLight(context)
                       ? LightTextStyles.text16WeightNormal
                       : DarkTextStyles.text16WeightNormal,
                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/core/widgets/default_app_bar.dart';
+import 'package:todo_app/presentation/home/add_task_bottom_sheet/add_task_bottom_sheet.dart';
 import 'package:todo_app/presentation/home/tabs/settings/setting_tab.dart';
 import 'package:todo_app/presentation/home/tabs/tasks/tasks_tab.dart';
 
@@ -50,11 +51,14 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: onAddNewTaskPressed,
         child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: tabs[selectedIndex],
     );
+  }
+  void onAddNewTaskPressed(){
+    showTaskBottomSheet(context);
   }
 }

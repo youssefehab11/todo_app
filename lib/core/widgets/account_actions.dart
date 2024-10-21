@@ -20,7 +20,7 @@ class AccountActions extends StatelessWidget {
       children: [
         Text(
           labelText,
-          style: checkCurrentTheme(context) ? LightTextStyles.text16WeightNormal : DarkTextStyles.text16WeightNormal,
+          style: isLight(context) ? LightTextStyles.text16WeightNormal : DarkTextStyles.text16WeightNormal,
         ),
         TextButton(
           onPressed: onPressed,

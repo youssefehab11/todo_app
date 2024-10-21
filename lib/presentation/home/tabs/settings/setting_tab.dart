@@ -24,7 +24,7 @@ class SettingsTab extends StatelessWidget {
           label: 'Mode',
           firstOption: 'Light',
           secondOption: 'Dark',
-          initialSelection: checkCurrentTheme(context) ? 'Light' : 'Dark',
+          initialSelection: isLight(context) ? 'Light' : 'Dark',
           onSelected: changeTheme,
         )
       ],
