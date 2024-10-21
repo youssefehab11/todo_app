@@ -7,7 +7,9 @@ class AppTheme {
     useMaterial3: false,
     colorScheme: ColorScheme.fromSeed(
       seedColor: ColorsManager.primaryColor,
-      primary: Colors.white,
+      primary: ColorsManager.primaryColor,
+      onPrimary: Colors.white,
+      onSurface: Colors.black,
     ),
     primaryColor: ColorsManager.primaryColor,
     appBarTheme: const AppBarTheme(
@@ -16,7 +18,7 @@ class AppTheme {
       titleTextStyle: LightTextStyles.appBarStyle,
     ),
     scaffoldBackgroundColor: ColorsManager.lightBackGround,
-    //primaryColorLight: Colors.white,
+    primaryColorLight: Colors.white,
     bottomAppBarTheme: const BottomAppBarTheme(color: Colors.white),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Colors.transparent,
@@ -53,13 +55,20 @@ class AppTheme {
         backgroundColor: WidgetStatePropertyAll(ColorsManager.lightBackGround),
       ),
     ),
+    datePickerTheme: DatePickerThemeData(
+      backgroundColor: Colors.white,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      yearForegroundColor: const WidgetStatePropertyAll(Colors.black),
+    ),
   );
 
   static ThemeData darkTheme = ThemeData(
     useMaterial3: false,
     colorScheme: ColorScheme.fromSeed(
       seedColor: ColorsManager.primaryColor,
-      primary: ColorsManager.darkColor,
+      primary: ColorsManager.primaryColor,
+      onPrimary: ColorsManager.darkBackGround,
+      onSurface: Colors.white,
     ),
     primaryColor: ColorsManager.primaryColor,
     appBarTheme: const AppBarTheme(
@@ -68,7 +77,7 @@ class AppTheme {
       titleTextStyle: DarkTextStyles.appBarStyle,
     ),
     scaffoldBackgroundColor: ColorsManager.darkBackGround,
-    //primaryColorLight: ColorsManager.darkColor,
+    primaryColorLight: ColorsManager.darkColor,
     bottomAppBarTheme: const BottomAppBarTheme(color: ColorsManager.darkColor),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Colors.transparent,
@@ -93,7 +102,6 @@ class AppTheme {
     ),
     dropdownMenuTheme: const DropdownMenuThemeData(
       inputDecorationTheme: InputDecorationTheme(
-
         fillColor: ColorsManager.darkColor,
         filled: true,
         outlineBorder: BorderSide(color: ColorsManager.primaryColor),
@@ -105,6 +113,11 @@ class AppTheme {
       menuStyle: MenuStyle(
         backgroundColor: WidgetStatePropertyAll(ColorsManager.darkColor),
       ),
+    ),
+    datePickerTheme: DatePickerThemeData(
+      backgroundColor: ColorsManager.darkColor,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      yearForegroundColor: const WidgetStatePropertyAll(Colors.white),
     ),
   );
 }

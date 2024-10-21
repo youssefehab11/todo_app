@@ -13,7 +13,7 @@ class SlidableItemContent extends StatelessWidget {
     return Container(
       height: taskItemHeight,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primary,
+        color: Theme.of(context).primaryColorLight,
         borderRadius: BorderRadius.circular(15),
       ),
       child: Row(
@@ -44,12 +44,12 @@ class SlidableItemContent extends StatelessWidget {
                     Icon(
                       Icons.schedule,
                       size: 16,
-                      color: checkCurrentTheme(context) ? Colors.black : Colors.white ,
+                      color: isLight(context) ? Colors.black : Colors.white ,
                     ),
                     const SizedBox(width: 4),
                     Text(
                       '10:30 AM',
-                      style: checkCurrentTheme(context) ? LightTextStyles.text16WeightNormal : DarkTextStyles.text16WeightNormal,
+                      style: isLight(context) ? LightTextStyles.text16WeightNormal : DarkTextStyles.text16WeightNormal,
                     )
                   ],
                 )
