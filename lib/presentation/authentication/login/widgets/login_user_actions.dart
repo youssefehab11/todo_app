@@ -45,7 +45,9 @@ class LoginUserActions extends StatelessWidget {
       controller: emailController,
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
-      validator: (input) {},
+      validator: (input) {
+        return null;
+      },
     );
   }
 
@@ -56,15 +58,18 @@ class LoginUserActions extends StatelessWidget {
       controller: passwordController,
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.done,
-      validator: (input) {},
+      validator: (input) {
+        return null;
+      },
     );
   }
 
   Widget buildCreateAccountRow(BuildContext context) {
-    return  AccountActions(
+    return AccountActions(
       labelText: 'Don\'t have account?',
       btnText: 'Create Account',
-      onPressed: () => Navigator.of(context).pushReplacementNamed(Routes.registerRoute),
+      onPressed: () =>
+          Navigator.of(context).pushReplacementNamed(Routes.registerRoute),
     );
   }
 }

@@ -55,7 +55,9 @@ class RegisterUserActions extends StatelessWidget {
       keyboardType: TextInputType.name,
       textInputAction: TextInputAction.next,
       controller: fullNameController,
-      validator: (input) {},
+      validator: (input) {
+        return null;
+      },
     );
   }
 
@@ -66,7 +68,9 @@ class RegisterUserActions extends StatelessWidget {
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
       controller: emailController,
-      validator: (input) {},
+      validator: (input) {
+        return null;
+      },
     );
   }
 
@@ -77,7 +81,9 @@ class RegisterUserActions extends StatelessWidget {
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.next,
       controller: passwordController,
-      validator: (input) {},
+      validator: (input) {
+        return null;
+      },
     );
   }
 
@@ -88,7 +94,9 @@ class RegisterUserActions extends StatelessWidget {
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.done,
       controller: rePasswordController,
-      validator: (input) {},
+      validator: (input) {
+        return null;
+      },
     );
   }
 
@@ -96,7 +104,8 @@ class RegisterUserActions extends StatelessWidget {
     return AccountActions(
       labelText: 'Already have account?',
       btnText: 'Login',
-      onPressed: () => Navigator.of(context).pushReplacementNamed(Routes.loginRoute),
+      onPressed: () =>
+          Navigator.of(context).pushReplacementNamed(Routes.loginRoute),
     );
   }
 }
