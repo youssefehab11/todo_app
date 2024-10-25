@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/core/utils/helper_functions.dart';
-import 'package:todo_app/core/utils/styles.dart';
 import 'package:todo_app/core/widgets/default_button.dart';
-import 'package:todo_app/core/widgets/default_text_form_field.dart';
+import 'package:todo_app/presentation/home/add_task_bottom_sheet/widgets/bottom_sheet_title.dart';
+import 'package:todo_app/presentation/home/add_task_bottom_sheet/widgets/task_info.dart';
 
 class AddTaskBottomSheet extends StatefulWidget {
   const AddTaskBottomSheet({super.key});
@@ -25,20 +24,14 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
         child: Center(
           child: Column(
             children: [
-              buildTitle(),
+              const BottomSheetTitle(),
               SizedBox(
                 height: size.height * 0.025,
               ),
-              buildTaskTitle(),
-              SizedBox(
-                height: size.height * 0.025,
+              TaskInfo(
+                selectedDate: selectedDate,
+                onDatePressed: showDatePickerCalendar,
               ),
-              buildTaskDescription(),
-              SizedBox(
-                height: size.height * 0.025,
-              ),
-              buildSelectTimeLabel(),
-              buildTime(),
               SizedBox(
                 height: size.height * 0.02,
               ),
@@ -68,62 +61,6 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
         selectedDate = pickedDate;
       });
     }
-  }
-
-  Widget buildTitle() {
-    return Text(
-      'Add new Task',
-      textAlign: TextAlign.center,
-      style: isLight(context)
-          ? LightTextStyles.text18WeightBold
-          : DarkTextStyles.text18WeightBold,
-    );
-  }
-
-  Widget buildTaskTitle() {
-    return DefaultTextFormField(
-      hintText: 'enter your task title',
-      keyboardType: TextInputType.text,
-      textInputAction: TextInputAction.next,
-      validator: (input) {},
-    );
-  }
-
-  Widget buildTaskDescription() {
-    return DefaultTextFormField(
-      hintText: 'enter your task details',
-      keyboardType: TextInputType.text,
-      textInputAction: TextInputAction.done,
-      validator: (input) {},
-    );
-  }
-
-  buildSelectTimeLabel() {
-    return SizedBox(
-      width: double.infinity,
-      child: Text(
-        'Select time',
-        style: isLight(context)
-            ? LightTextStyles.text20WeightNormal
-            .copyWith(color: Colors.black)
-            : DarkTextStyles.text20WeightNormal,
-      ),
-    );
-  }
-
-  Widget buildTime() {
-    return InkWell(
-      onTap: () {
-        showDatePickerCalendar(context);
-      },
-      child: Text(
-        selectedDate.getFormatDate,
-        textAlign: TextAlign.center,
-        style: isLight(context)
-            ? LightTextStyles.text18WeightNormal
-            : DarkTextStyles.text18WeightNormal,
-      ),
-    );
   }
 }
 
