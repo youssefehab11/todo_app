@@ -6,12 +6,11 @@ class AccountActions extends StatelessWidget {
   final String labelText;
   final String btnText;
   final VoidCallback onPressed;
-  const AccountActions({
-    super.key,
-    required this.labelText,
-    required this.btnText,
-    required this.onPressed
-  });
+  const AccountActions(
+      {super.key,
+      required this.labelText,
+      required this.btnText,
+      required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +19,15 @@ class AccountActions extends StatelessWidget {
       children: [
         Text(
           labelText,
-          style: isLight(context) ? LightTextStyles.text16WeightNormal : DarkTextStyles.text16WeightNormal,
+          style: isLight(context)
+              ? LightTextStyles.text18WeightNormal
+              : DarkTextStyles.text18WeightNormal,
         ),
         TextButton(
           onPressed: onPressed,
           child: Text(
             btnText,
-            style: LightTextStyles.text16WeightNormal
+            style: LightTextStyles.text18WeightNormal
                 .copyWith(color: Theme.of(context).primaryColor),
           ),
         )

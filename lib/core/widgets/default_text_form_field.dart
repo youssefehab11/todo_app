@@ -30,14 +30,18 @@ class DefaultTextFormField extends StatelessWidget {
       obscureText: isObscure,
       keyboardType: keyboardType,
       textInputAction: textInputAction,
-      style: isLight(context) ? LightTextStyles.text18WeightNormal.copyWith(color: Colors.black) : DarkTextStyles.text18WeightNormal,
+      style: isLight(context)
+          ? LightTextStyles.text18WeightNormalInter
+              .copyWith(color: Colors.black)
+          : DarkTextStyles.text18WeightNormalInter,
       cursorColor: theme.primaryColor,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: LightTextStyles.text18WeightNormal,
+        hintStyle: LightTextStyles.text18WeightNormalInter,
         enabledBorder: TextFormFieldBorderStyle(theme.primaryColorLight),
         focusedBorder: TextFormFieldBorderStyle(theme.primaryColor),
         errorBorder: TextFormFieldBorderStyle(Colors.red),
+        focusedErrorBorder: TextFormFieldBorderStyle(Colors.red),
         filled: true,
         fillColor: theme.primaryColorLight,
       ),

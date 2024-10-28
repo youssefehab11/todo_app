@@ -1,60 +1,73 @@
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_app/core/utils/colors_manager.dart';
 import 'package:todo_app/core/utils/helper_functions.dart';
 import 'package:todo_app/core/utils/styles.dart';
 
 class Calendar extends StatelessWidget {
-  const Calendar({super.key});
+  final DateTime focusedDate;
+  final Function(DateTime) onDateChange;
+  const Calendar({
+    super.key,
+    required this.focusedDate,
+    required this.onDateChange,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: EasyDateTimeLine(
-        initialDate: DateTime.now(),
-        onDateChange: (selectedDate) {
-          //`selectedDate` the new date selected.
-        },
-        headerProps: const EasyHeaderProps(showHeader: false),
-        dayProps: EasyDayProps(
-          todayStyle: CustomDayStyle(
-            context: context,
-            isSelected: false,
-            hasBorder: true,
-          ),
-          dayStructure: DayStructure.dayStrDayNum,
-          activeDayStyle: CustomDayStyle(
-            context: context,
-            isSelected: true,
-          ),
-          inactiveDayStyle: CustomDayStyle(
-            context: context,
-            isSelected: false,
-          ),
+      child: EasyInfiniteDateTimeLine(
+        firstDate: DateTime.now(),
+        focusDate: focusedDate,
+        lastDate: DateTime.now().add(const Duration(days: 365)),
+        showTimelineHeader: false,
+        itemBuilder: buildCalendarItem,
+      ),
+    );
+  }
+
+  Widget buildCalendarItem(
+    BuildContext context,
+    DateTime date,
+    bool isSelected,
+    Function() onTap,
+  ) {
+    return InkWell(
+      onTap: () => onDateChange(date),
+      child: Card(
+        margin: const EdgeInsets.all(2),
+        color: Theme.of(context).primaryColorLight,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+        elevation: 2,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              date.getDayName,
+              style: isSelected
+                  ? LightTextStyles.text15WeightBold.copyWith(
+                      color: ColorsManager.primaryColor,
+                    )
+                  : isLight(context)
+                      ? LightTextStyles.text15WeightBold
+                      : DarkTextStyles.text15WeightBold,
+            ),
+            Text(
+              '${date.day}',
+              style: isSelected
+                  ? LightTextStyles.text15WeightBold.copyWith(
+                      color: ColorsManager.primaryColor,
+                    )
+                  : isLight(context)
+                      ? LightTextStyles.text15WeightBold
+                      : DarkTextStyles.text15WeightBold,
+            ),
+          ],
         ),
       ),
     );
   }
-}
-
-class CustomDayStyle extends DayStyle {
-  CustomDayStyle({
-    required BuildContext context,
-    bool hasBorder = false,
-    required bool isSelected,
-  }) : super(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: Theme.of(context).primaryColorLight,
-            border: hasBorder
-                ? Border.all(color: Theme.of(context).primaryColor)
-                : null,
-          ),
-          dayNumStyle: isSelected
-              ? LightTextStyles.text15WeightBold.copyWith(color: Theme.of(context).primaryColor)
-              : isLight(context) ? LightTextStyles.text15WeightBold : DarkTextStyles.text15WeightBold,
-          dayStrStyle: isSelected
-              ? LightTextStyles.text15WeightBold.copyWith(color: Theme.of(context).primaryColor)
-              : isLight(context) ? LightTextStyles.text15WeightBold : DarkTextStyles.text15WeightBold,
-        );
 }
