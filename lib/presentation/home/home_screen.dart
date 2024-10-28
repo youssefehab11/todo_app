@@ -30,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: DefaultAppBar(title: appBarTitle),
+      resizeToAvoidBottomInset: false,
       extendBody: true,
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),

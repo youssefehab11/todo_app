@@ -22,8 +22,7 @@ class SlidableItemContent extends StatelessWidget {
         children: [
           Container(
             width: 4,
-            height: 62,
-            margin: const EdgeInsets.symmetric(horizontal: 16),
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 22),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               color: theme.primaryColor,
@@ -38,7 +37,7 @@ class SlidableItemContent extends StatelessWidget {
                   taskTitle,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: LightTextStyles.text22WeightBold,
+                  style: LightTextStyles.text20WeightBold,
                 ),
                 const SizedBox(
                   height: 4,
