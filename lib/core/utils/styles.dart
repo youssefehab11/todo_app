@@ -16,10 +16,10 @@ class LightTextStyles {
     fontSize: 15,
     color: Colors.black,
   );
-  static const TextStyle text22WeightBold = TextStyle(
+  static const TextStyle text20WeightBold = TextStyle(
     fontFamily: FontsManager.poppins,
     fontWeight: FontWeight.bold,
-    fontSize: 22,
+    fontSize: 20,
     color: ColorsManager.primaryColor,
   );
   static const TextStyle text18WeightNormal = TextStyle(
@@ -61,10 +61,10 @@ class DarkTextStyles {
     fontSize: 15,
     color: Colors.white,
   );
-  static const TextStyle text22WeightBold = TextStyle(
+  static const TextStyle text20WeightBold = TextStyle(
     fontFamily: FontsManager.poppins,
     fontWeight: FontWeight.bold,
-    fontSize: 22,
+    fontSize: 20,
     color: ColorsManager.primaryColor,
   );
   static const TextStyle text18WeightNormal = TextStyle(

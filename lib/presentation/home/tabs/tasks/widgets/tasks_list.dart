@@ -9,6 +9,7 @@ class TasksList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
+      flex: 85,
       child: ListView.builder(
         itemBuilder: (context, index) => TaskItem(
           taskTitle: tasks[index].title,
