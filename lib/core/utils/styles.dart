@@ -22,7 +22,7 @@ class LightTextStyles {
     fontSize: 22,
     color: ColorsManager.primaryColor,
   );
-  static const TextStyle text16WeightNormal = TextStyle(
+  static const TextStyle text18WeightNormal = TextStyle(
     fontFamily: FontsManager.roboto,
     fontWeight: FontWeight.normal,
     fontSize: 18,
@@ -40,7 +40,7 @@ class LightTextStyles {
     fontSize: 18,
     color: Colors.black,
   );
-  static const TextStyle text18WeightNormal = TextStyle(
+  static const TextStyle text18WeightNormalInter = TextStyle(
     fontFamily: FontsManager.inter,
     fontWeight: FontWeight.normal,
     fontSize: 18,
@@ -67,7 +67,7 @@ class DarkTextStyles {
     fontSize: 22,
     color: ColorsManager.primaryColor,
   );
-  static const TextStyle text16WeightNormal = TextStyle(
+  static const TextStyle text18WeightNormal = TextStyle(
     fontFamily: FontsManager.roboto,
     fontWeight: FontWeight.normal,
     fontSize: 18,
@@ -85,7 +85,7 @@ class DarkTextStyles {
     fontSize: 18,
     color: Colors.white,
   );
-  static const TextStyle text18WeightNormal = TextStyle(
+  static const TextStyle text18WeightNormalInter = TextStyle(
     fontFamily: FontsManager.inter,
     fontWeight: FontWeight.normal,
     fontSize: 18,

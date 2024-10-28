@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/core/utils/helper_functions.dart';
 import 'package:todo_app/core/utils/styles.dart';
+import 'package:todo_app/core/utils/validator.dart';
 import 'package:todo_app/core/widgets/default_text_form_field.dart';
 
 class TaskInfo extends StatelessWidget {
   final DateTime selectedDate;
   final Function(BuildContext) onDatePressed;
-  const TaskInfo({
-    super.key,
-    required this.selectedDate,
-    required this.onDatePressed,
-  });
+  final TextEditingController taskTitleController;
+  final TextEditingController taskDescriptionController;
+  const TaskInfo(
+      {super.key,
+      required this.selectedDate,
+      required this.onDatePressed,
+      required this.taskTitleController,
+      required this.taskDescriptionController});
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +36,8 @@ class TaskInfo extends StatelessWidget {
       hintText: 'enter your task title',
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.next,
-      validator: (input) {
-        return null;
-      },
+      validator: (input) => taskValidator(input, TaskFieldType.title),
+      controller: taskTitleController,
     );
   }
 
@@ -43,13 +46,12 @@ class TaskInfo extends StatelessWidget {
       hintText: 'enter your task details',
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.done,
-      validator: (input) {
-        return null;
-      },
+      validator: (input) => taskValidator(input, TaskFieldType.description),
+      controller: taskDescriptionController,
     );
   }
 
-  buildSelectTimeLabel(BuildContext context) {
+  Widget buildSelectTimeLabel(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: Text(
@@ -70,8 +72,8 @@ class TaskInfo extends StatelessWidget {
         selectedDate.getFormatDate,
         textAlign: TextAlign.center,
         style: isLight(context)
-            ? LightTextStyles.text18WeightNormal
-            : DarkTextStyles.text18WeightNormal,
+            ? LightTextStyles.text18WeightNormalInter
+            : DarkTextStyles.text18WeightNormalInter,
       ),
     );
   }

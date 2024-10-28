@@ -10,14 +10,13 @@ class SettingsItem extends StatelessWidget {
   final String secondOption;
   final OnSelected onSelected;
   final String initialSelection;
-  const SettingsItem({
-    super.key,
-    required this.label,
-    required this.firstOption,
-    required this.secondOption,
-    required this.onSelected,
-    required this.initialSelection
-  });
+  const SettingsItem(
+      {super.key,
+      required this.label,
+      required this.firstOption,
+      required this.secondOption,
+      required this.onSelected,
+      required this.initialSelection});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +39,7 @@ class SettingsItem extends StatelessWidget {
             initialSelection: initialSelection,
             trailingIcon: const Icon(Icons.keyboard_arrow_down),
             width: MediaQuery.sizeOf(context).width - 20,
-            textStyle: LightTextStyles.text16WeightNormal.copyWith(
+            textStyle: LightTextStyles.text18WeightNormal.copyWith(
               color: Theme.of(context).primaryColor,
             ),
             dropdownMenuEntries: [
@@ -50,8 +49,8 @@ class SettingsItem extends StatelessWidget {
                 labelWidget: Text(
                   firstOption,
                   style: isLight(context)
-                      ? LightTextStyles.text16WeightNormal
-                      : DarkTextStyles.text16WeightNormal,
+                      ? LightTextStyles.text18WeightNormal
+                      : DarkTextStyles.text18WeightNormal,
                 ),
               ),
               DropdownMenuEntry(
@@ -60,8 +59,8 @@ class SettingsItem extends StatelessWidget {
                 labelWidget: Text(
                   secondOption,
                   style: isLight(context)
-                      ? LightTextStyles.text16WeightNormal
-                      : DarkTextStyles.text16WeightNormal,
+                      ? LightTextStyles.text18WeightNormal
+                      : DarkTextStyles.text18WeightNormal,
                 ),
               )
             ],
