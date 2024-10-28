@@ -4,11 +4,17 @@ import 'package:todo_app/core/utils/colors_manager.dart';
 import 'package:todo_app/presentation/home/tabs/tasks/widgets/slidable_item_content.dart';
 
 class SlidableItem extends StatelessWidget {
-  const SlidableItem({super.key});
+  final String taskTitle;
+  final String taskDescription;
+  const SlidableItem({
+    super.key,
+    required this.taskTitle,
+    required this.taskDescription,
+  });
 
   @override
   Widget build(BuildContext context) {
-    ThemeData theme =Theme.of(context);
+    ThemeData theme = Theme.of(context);
     return ClipRRect(
       borderRadius: BorderRadius.circular(15),
       clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -41,7 +47,10 @@ class SlidableItem extends StatelessWidget {
             )
           ],
         ),
-        child: const SlidableItemContent(),
+        child: SlidableItemContent(
+          taskTitle: taskTitle,
+          taskDescription: taskDescription,
+        ),
       ),
     );
   }

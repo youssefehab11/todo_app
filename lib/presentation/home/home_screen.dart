@@ -13,15 +13,23 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
-  List<Widget> tabs = const[
-    TasksTab(),
-    SettingsTab(),
-  ];
+  GlobalKey<TasksTabState> tasksTapKey = GlobalKey<TasksTabState>();
+  List<Widget> tabs = [];
   String appBarTitle = 'To Do List';
+
+  @override
+  void initState() {
+    super.initState();
+    tabs = [
+      TasksTab(key: tasksTapKey),
+      const SettingsTab(),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  DefaultAppBar(title: appBarTitle),
+      appBar: DefaultAppBar(title: appBarTitle),
       extendBody: true,
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
@@ -42,10 +50,9 @@ class _HomeScreenState extends State<HomeScreen> {
             )
           ],
           currentIndex: selectedIndex,
-
-          onTap: (value){
+          onTap: (value) {
             selectedIndex = value;
-            appBarTitle = value == 0 ? 'To Do List': 'Settings';
+            appBarTitle = value == 0 ? 'To Do List' : 'Settings';
             setState(() {});
           },
         ),
@@ -58,7 +65,9 @@ class _HomeScreenState extends State<HomeScreen> {
       body: tabs[selectedIndex],
     );
   }
-  void onAddNewTaskPressed(){
-    showTaskBottomSheet(context);
+
+  void onAddNewTaskPressed() async {
+    await showTaskBottomSheet(context);
+    tasksTapKey.currentState?.getTasks();
   }
 }

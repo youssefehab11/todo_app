@@ -4,11 +4,13 @@ import 'package:todo_app/core/utils/helper_functions.dart';
 import 'package:todo_app/core/utils/styles.dart';
 
 class SlidableItemContent extends StatelessWidget {
-  const SlidableItemContent({super.key});
+  final String taskTitle;
+  final String taskDescription;
+  const SlidableItemContent(
+      {super.key, required this.taskTitle, required this.taskDescription});
 
   @override
   Widget build(BuildContext context) {
-    
     ThemeData theme = Theme.of(context);
     return Container(
       height: taskItemHeight,
@@ -32,8 +34,10 @@ class SlidableItemContent extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  'Play Basketball',
+                Text(
+                  taskTitle,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                   style: LightTextStyles.text22WeightBold,
                 ),
                 const SizedBox(
@@ -42,14 +46,16 @@ class SlidableItemContent extends StatelessWidget {
                 Row(
                   children: [
                     Icon(
-                      Icons.schedule,
+                      Icons.description_outlined,
                       size: 16,
-                      color: isLight(context) ? Colors.black : Colors.white ,
+                      color: isLight(context) ? Colors.black : Colors.white,
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      '10:30 AM',
-                      style: isLight(context) ? LightTextStyles.text16WeightNormal : DarkTextStyles.text16WeightNormal,
+                      taskDescription,
+                      style: isLight(context)
+                          ? LightTextStyles.text15WeightBold
+                          : DarkTextStyles.text15WeightBold,
                     )
                   ],
                 )
