@@ -9,8 +9,9 @@ class TasksList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      flex: 85,
+      flex: 80,
       child: ListView.builder(
+        physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) => TaskItem(
           taskTitle: tasks[index].title,
           taskDescription: tasks[index].description,

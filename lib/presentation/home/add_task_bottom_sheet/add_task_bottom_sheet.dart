@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/core/utils/helper_functions.dart';
 import 'package:todo_app/presentation/home/add_task_bottom_sheet/widgets/bottom_sheet_title.dart';
 import 'package:todo_app/presentation/home/add_task_bottom_sheet/widgets/confirm_button.dart';
 import 'package:todo_app/presentation/home/add_task_bottom_sheet/widgets/task_info.dart';
@@ -20,33 +21,36 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      height: size.height * 0.48,
+      height: isEnglish(context) ? size.height * 0.44 : size.height * 0.48,
       padding: const EdgeInsets.all(16.0),
       margin: MediaQuery.viewInsetsOf(context),
       child: Center(
         child: Form(
           key: formKey,
-          child: Column(
-            children: [
-              const BottomSheetTitle(),
-              SizedBox(
-                height: size.height * 0.025,
-              ),
-              TaskInfo(
-                selectedDate: selectedDate,
-                onDatePressed: showDatePickerCalendar,
-                taskTitleController: taskTitleController,
-                taskDescriptionController: taskDescriptionController,
-              ),
-              SizedBox(height: size.height * 0.02),
-              ConfirmButton(
-                formKey: formKey,
-                taskTitleController: taskTitleController,
-                taskDescriptionController: taskDescriptionController,
-                datePickerSelectedDate: selectedDate,
-              ),
-              SizedBox(height: size.height * 0.025),
-            ],
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              children: [
+                const BottomSheetTitle(),
+                SizedBox(
+                  height: size.height * 0.025,
+                ),
+                TaskInfo(
+                  selectedDate: selectedDate,
+                  onDatePressed: showDatePickerCalendar,
+                  taskTitleController: taskTitleController,
+                  taskDescriptionController: taskDescriptionController,
+                ),
+                SizedBox(height: size.height * 0.02),
+                ConfirmButton(
+                  formKey: formKey,
+                  taskTitleController: taskTitleController,
+                  taskDescriptionController: taskDescriptionController,
+                  datePickerSelectedDate: selectedDate,
+                ),
+                SizedBox(height: size.height * 0.025),
+              ],
+            ),
           ),
         ),
       ),
