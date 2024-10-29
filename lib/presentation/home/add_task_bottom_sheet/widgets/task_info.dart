@@ -3,37 +3,39 @@ import 'package:todo_app/core/utils/helper_functions.dart';
 import 'package:todo_app/core/utils/styles.dart';
 import 'package:todo_app/core/utils/validator.dart';
 import 'package:todo_app/core/widgets/default_text_form_field.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TaskInfo extends StatelessWidget {
   final DateTime selectedDate;
   final Function(BuildContext) onDatePressed;
   final TextEditingController taskTitleController;
   final TextEditingController taskDescriptionController;
-  const TaskInfo(
-      {super.key,
-      required this.selectedDate,
-      required this.onDatePressed,
-      required this.taskTitleController,
-      required this.taskDescriptionController});
+  const TaskInfo({
+    super.key,
+    required this.selectedDate,
+    required this.onDatePressed,
+    required this.taskTitleController,
+    required this.taskDescriptionController,
+  });
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Column(
       children: [
-        buildTaskTitle(),
+        buildTaskTitle(context),
         SizedBox(height: size.height * 0.025),
-        buildTaskDescription(),
+        buildTaskDescription(context),
         SizedBox(height: size.height * 0.025),
-        buildSelectTimeLabel(context),
-        buildTime(context),
+        buildSelectDateLabel(context),
+        buildDate(context),
       ],
     );
   }
 
-  Widget buildTaskTitle() {
+  Widget buildTaskTitle(BuildContext context) {
     return DefaultTextFormField(
-      hintText: 'enter your task title',
+      hintText: AppLocalizations.of(context)!.taskTitleHint,
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.next,
       validator: (input) => taskValidator(input, TaskFieldType.title),
@@ -41,9 +43,9 @@ class TaskInfo extends StatelessWidget {
     );
   }
 
-  Widget buildTaskDescription() {
+  Widget buildTaskDescription(BuildContext context) {
     return DefaultTextFormField(
-      hintText: 'enter your task details',
+      hintText: AppLocalizations.of(context)!.taskDescriptionHint,
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.done,
       validator: (input) => taskValidator(input, TaskFieldType.description),
@@ -51,11 +53,11 @@ class TaskInfo extends StatelessWidget {
     );
   }
 
-  Widget buildSelectTimeLabel(BuildContext context) {
+  Widget buildSelectDateLabel(BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: Text(
-        'Select time',
+        AppLocalizations.of(context)!.selectDateLabel,
         style: isLight(context)
             ? LightTextStyles.text20WeightNormal.copyWith(color: Colors.black)
             : DarkTextStyles.text20WeightNormal,
@@ -63,13 +65,15 @@ class TaskInfo extends StatelessWidget {
     );
   }
 
-  Widget buildTime(BuildContext context) {
+  Widget buildDate(BuildContext context) {
     return InkWell(
       onTap: () {
         onDatePressed(context);
       },
       child: Text(
-        selectedDate.getFormatDate,
+        isEnglish(context)
+            ? selectedDate.getFormatDate
+            : getArabicNumbers(selectedDate.getFormatDate),
         textAlign: TextAlign.center,
         style: isLight(context)
             ? LightTextStyles.text18WeightNormalInter

@@ -5,12 +5,10 @@ import 'package:todo_app/presentation/authentication/login/widgets/login_user_ac
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: ColorsManager.authBGColor,
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
