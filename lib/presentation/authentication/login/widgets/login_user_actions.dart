@@ -16,25 +16,28 @@ class LoginUserActions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       flex: 3,
-      child: Column(
-        children: [
-          buildEmailFieldItem(context),
-          const SizedBox(
-            height: heightBetweenFieldItems,
-          ),
-          buildPasswordFieldItem(context),
-          const SizedBox(
-            height: heightBetweenFieldItemAndButton,
-          ),
-          DefaultButton(
-            btnText: AppLocalizations.of(context)!.login,
-            onPressed: () {},
-          ),
-          const SizedBox(
-            height: heightBetweenFieldItems,
-          ),
-          buildCreateAccountRow(context),
-        ],
+      child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          children: [
+            buildEmailFieldItem(context),
+            const SizedBox(
+              height: heightBetweenFieldItems,
+            ),
+            buildPasswordFieldItem(context),
+            const SizedBox(
+              height: heightBetweenFieldItemAndButton,
+            ),
+            DefaultButton(
+              btnText: AppLocalizations.of(context)!.login,
+              onPressed: () {},
+            ),
+            const SizedBox(
+              height: heightBetweenFieldItems,
+            ),
+            buildCreateAccountRow(context),
+          ],
+        ),
       ),
     );
   }

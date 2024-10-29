@@ -28,15 +28,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String appBarTitle = AppLocalizations.of(context)!.appbarTasksTitle;
     return Scaffold(
-      appBar: DefaultAppBar(title: appBarTitle),
+      appBar: DefaultAppBar(
+        title: selectedIndex == 0
+            ? AppLocalizations.of(context)!.appbarTasksTitle
+            : AppLocalizations.of(context)!.appbarSettingsTitle,
+      ),
       resizeToAvoidBottomInset: false,
       extendBody: true,
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         notchMargin: 8,
         child: BottomNavigationBar(
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(
@@ -54,9 +59,6 @@ class _HomeScreenState extends State<HomeScreen> {
           currentIndex: selectedIndex,
           onTap: (value) {
             selectedIndex = value;
-            appBarTitle = value == 0
-                ? AppLocalizations.of(context)!.appbarTasksTitle
-                : AppLocalizations.of(context)!.appbarSettingsTitle;
             setState(() {});
           },
         ),

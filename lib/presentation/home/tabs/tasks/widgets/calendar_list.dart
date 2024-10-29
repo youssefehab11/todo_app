@@ -13,7 +13,7 @@ class CalendarList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return EasyInfiniteDateTimeLine(
-      firstDate: DateTime.now(),
+      firstDate: DateTime.now().subtract(const Duration(days: 365)),
       focusDate: focusedDate,
       lastDate: DateTime.now().add(const Duration(days: 365)),
       showTimelineHeader: false,
