@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app/core/widgets/default_button.dart';
 import 'package:todo_app/presentation/home/add_task_bottom_sheet/model/task_model.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ConfirmButton extends StatelessWidget {
   final TextEditingController taskTitleController;
@@ -19,7 +20,7 @@ class ConfirmButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultButton(
-      btnText: 'Done',
+      btnText: AppLocalizations.of(context)!.done,
       onPressed: () => onDonePressed(context),
     );
   }

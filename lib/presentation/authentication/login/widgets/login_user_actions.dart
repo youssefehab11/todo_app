@@ -4,6 +4,7 @@ import 'package:todo_app/core/utils/constants.dart';
 import 'package:todo_app/core/widgets/account_actions.dart';
 import 'package:todo_app/core/widgets/default_button.dart';
 import 'package:todo_app/core/widgets/field_item.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginUserActions extends StatelessWidget {
   LoginUserActions({super.key});
@@ -17,16 +18,16 @@ class LoginUserActions extends StatelessWidget {
       flex: 3,
       child: Column(
         children: [
-          buildEmailFieldItem(),
+          buildEmailFieldItem(context),
           const SizedBox(
             height: heightBetweenFieldItems,
           ),
-          buildPasswordFieldItem(),
+          buildPasswordFieldItem(context),
           const SizedBox(
             height: heightBetweenFieldItemAndButton,
           ),
           DefaultButton(
-            btnText: 'Login',
+            btnText: AppLocalizations.of(context)!.login,
             onPressed: () {},
           ),
           const SizedBox(
@@ -38,10 +39,10 @@ class LoginUserActions extends StatelessWidget {
     );
   }
 
-  Widget buildEmailFieldItem() {
+  Widget buildEmailFieldItem(BuildContext context) {
     return InputFieldItem(
-      label: 'Email Address',
-      hintText: 'enter your email',
+      label: AppLocalizations.of(context)!.emailAddress,
+      hintText: AppLocalizations.of(context)!.emailAddressHint,
       controller: emailController,
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
@@ -51,10 +52,10 @@ class LoginUserActions extends StatelessWidget {
     );
   }
 
-  Widget buildPasswordFieldItem() {
+  Widget buildPasswordFieldItem(BuildContext context) {
     return InputFieldItem(
-      label: 'Password',
-      hintText: 'enter your password',
+      label: AppLocalizations.of(context)!.password,
+      hintText: AppLocalizations.of(context)!.passwordHint,
       controller: passwordController,
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.done,
@@ -66,8 +67,8 @@ class LoginUserActions extends StatelessWidget {
 
   Widget buildCreateAccountRow(BuildContext context) {
     return AccountActions(
-      labelText: 'Don\'t have account?',
-      btnText: 'Create Account',
+      labelText: AppLocalizations.of(context)!.dontHaveAccount,
+      btnText: AppLocalizations.of(context)!.createAccount,
       onPressed: () =>
           Navigator.of(context).pushReplacementNamed(Routes.registerRoute),
     );

@@ -3,6 +3,7 @@ import 'package:todo_app/core/widgets/default_app_bar.dart';
 import 'package:todo_app/presentation/home/add_task_bottom_sheet/add_task_bottom_sheet.dart';
 import 'package:todo_app/presentation/home/tabs/settings/setting_tab.dart';
 import 'package:todo_app/presentation/home/tabs/tasks/tasks_tab.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,7 +16,6 @@ class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
   GlobalKey<TasksTabState> tasksTapKey = GlobalKey<TasksTabState>();
   List<Widget> tabs = [];
-  String appBarTitle = 'To Do List';
 
   @override
   void initState() {
@@ -28,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String appBarTitle = AppLocalizations.of(context)!.appbarTasksTitle;
     return Scaffold(
       appBar: DefaultAppBar(title: appBarTitle),
       resizeToAvoidBottomInset: false,
@@ -53,7 +54,9 @@ class _HomeScreenState extends State<HomeScreen> {
           currentIndex: selectedIndex,
           onTap: (value) {
             selectedIndex = value;
-            appBarTitle = value == 0 ? 'To Do List' : 'Settings';
+            appBarTitle = value == 0
+                ? AppLocalizations.of(context)!.appbarTasksTitle
+                : AppLocalizations.of(context)!.appbarSettingsTitle;
             setState(() {});
           },
         ),
