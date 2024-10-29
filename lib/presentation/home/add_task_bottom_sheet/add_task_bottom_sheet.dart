@@ -20,7 +20,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      height: size.height * 0.44,
+      height: size.height * 0.48,
       padding: const EdgeInsets.all(16.0),
       margin: MediaQuery.viewInsetsOf(context),
       child: Center(

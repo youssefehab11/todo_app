@@ -3,40 +3,51 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/core/utils/helper_functions.dart';
 import 'package:todo_app/presentation/home/tabs/settings/widgets/settings_item.dart';
 import 'package:todo_app/provider/app_provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SettingsTab extends StatelessWidget {
   const SettingsTab({super.key});
 
   @override
   Widget build(BuildContext context) {
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return Column(
       children: [
         SettingsItem(
-          label: 'Language',
-          firstOption: 'English',
-          secondOption: 'Arabic',
-          initialSelection: 'English',
-          onSelected: (value, context) {
-
-          } ,
+          label: appLocalizations.languageLabel,
+          firstOption: appLocalizations.englishOption,
+          secondOption: appLocalizations.arabicOption,
+          initialSelection: isEnglish(context)
+              ? appLocalizations.englishOption
+              : appLocalizations.arabicOption,
+          onSelected: changeLanguage,
         ),
         SettingsItem(
-          label: 'Mode',
-          firstOption: 'Light',
-          secondOption: 'Dark',
-          initialSelection: isLight(context) ? 'Light' : 'Dark',
+          label: appLocalizations.modeLabel,
+          firstOption: appLocalizations.lightOption,
+          secondOption: appLocalizations.darkOption,
+          initialSelection: isLight(context)
+              ? appLocalizations.lightOption
+              : appLocalizations.darkOption,
           onSelected: changeTheme,
         )
       ],
     );
   }
-  void changeTheme(String? value, BuildContext context){
-    AppProvider provider = Provider.of<AppProvider>(context, listen: false);
-    if(value == 'Light'){
-      provider.changeThemeMode(ThemeMode.light);
+
+  void changeTheme(String? value, BuildContext context) {
+    if (value == 'Light' || value == 'فاتح') {
+      context.read<AppProvider>().changeThemeMode(ThemeMode.light);
+    } else {
+      context.read<AppProvider>().changeThemeMode(ThemeMode.dark);
     }
-    else{
-      provider.changeThemeMode(ThemeMode.dark);
+  }
+
+  void changeLanguage(String? value, BuildContext context) {
+    if (value == 'English') {
+      context.read<AppProvider>().changeLanguage('en');
+    } else {
+      context.read<AppProvider>().changeLanguage('ar');
     }
   }
 }

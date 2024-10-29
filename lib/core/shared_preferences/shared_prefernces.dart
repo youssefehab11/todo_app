@@ -16,4 +16,12 @@ class AppSharedPreferences {
     final String? theme = prefs.getString('theme');
     return theme == 'light' || theme == null ? ThemeMode.light : ThemeMode.dark;
   }
+
+  static void saveLanguage(String newLanguage) async {
+    await prefs.setString('language', newLanguage);
+  }
+
+  static String getLanguage() {
+    return prefs.getString('language') ?? 'en';
+  }
 }

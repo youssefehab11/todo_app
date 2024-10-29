@@ -40,7 +40,7 @@ class CalendarList extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              date.getDayName,
+              date.getDayName(context),
               style: isSelected
                   ? LightTextStyles.text15WeightBold.copyWith(
                       color: ColorsManager.primaryColor,
@@ -50,7 +50,9 @@ class CalendarList extends StatelessWidget {
                       : DarkTextStyles.text15WeightBold,
             ),
             Text(
-              '${date.day}',
+              isEnglish(context)
+                  ? '${date.day}'
+                  : getArabicNumbers(date.day.toString()),
               style: isSelected
                   ? LightTextStyles.text15WeightBold.copyWith(
                       color: ColorsManager.primaryColor,
