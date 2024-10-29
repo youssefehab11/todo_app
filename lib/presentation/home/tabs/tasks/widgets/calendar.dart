@@ -14,7 +14,7 @@ class Calendar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      flex: 15,
+      flex: 20,
       child: Stack(
         children: [
           const CalendarBg(),
