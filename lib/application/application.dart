@@ -3,7 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/config/theme/theme.dart';
 import 'package:todo_app/core/router/router.dart';
 import 'package:todo_app/core/router/routes.dart';
-import 'package:todo_app/provider/app_provider.dart';
+import 'package:todo_app/providers/auth_provider.dart';
+import 'package:todo_app/providers/settings_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MyApp extends StatelessWidget {
@@ -11,10 +12,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppProvider provider = Provider.of<AppProvider>(context);
+    SettingsProvider provider = Provider.of<SettingsProvider>(context);
     return MaterialApp(
       onGenerateRoute: (settings) => RouteManager.onGenerateRoute(settings),
-      initialRoute: Routes.homeRoute,
+      initialRoute: context.read<AppAuthProvider>().currentUser == null
+          ? Routes.loginRoute
+          : Routes.homeRoute,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       locale: Locale(provider.currentLanguage),

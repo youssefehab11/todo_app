@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_app/core/utils/constants.dart';
-import 'package:todo_app/provider/app_provider.dart';
+import 'package:todo_app/providers/settings_provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 bool isLight(BuildContext context) {
-  return context.read<AppProvider>().currentTheme == ThemeMode.light
+  return context.read<SettingsProvider>().currentTheme == ThemeMode.light
       ? true
       : false;
 }
 
 bool isEnglish(BuildContext context) {
-  return context.read<AppProvider>().currentLanguage == 'en' ? true : false;
+  return context.read<SettingsProvider>().currentLanguage == 'en'
+      ? true
+      : false;
 }
 
 extension FormatDate on DateTime {
