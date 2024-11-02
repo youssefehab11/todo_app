@@ -5,7 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/application/application.dart';
 import 'package:todo_app/core/shared_preferences/shared_prefernces.dart';
 import 'package:todo_app/firebase_options.dart';
-import 'package:todo_app/provider/app_provider.dart';
+import 'package:todo_app/providers/auth_provider.dart';
+import 'package:todo_app/providers/settings_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,8 +16,15 @@ void main() async {
   );
   await FirebaseFirestore.instance.disableNetwork();
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => AppProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => SettingsProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => AppAuthProvider(),
+        )
+      ],
       child: const MyApp(),
     ),
   );
