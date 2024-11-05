@@ -72,8 +72,8 @@ class TaskInfo extends StatelessWidget {
       },
       child: Text(
         isEnglish(context)
-            ? selectedDate.getFormatDate
-            : getArabicNumbers(selectedDate.getFormatDate),
+            ? selectedDate.stringFormatDate
+            : getArabicNumbers(selectedDate.stringFormatDate),
         textAlign: TextAlign.center,
         style: isLight(context)
             ? LightTextStyles.text18WeightNormalInter

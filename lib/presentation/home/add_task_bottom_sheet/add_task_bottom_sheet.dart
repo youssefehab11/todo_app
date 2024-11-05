@@ -75,13 +75,14 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
   }
 }
 
-Future<dynamic> showTaskBottomSheet(BuildContext context) =>
-    showModalBottomSheet(
-      isScrollControlled: true,
-      context: context,
-      builder: (context) => const AddTaskBottomSheet(),
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-    );
+Future<dynamic> showTaskBottomSheet(BuildContext context) {
+  return showModalBottomSheet(
+    isScrollControlled: true,
+    context: context,
+    builder: (context) => const AddTaskBottomSheet(),
+    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(15),
+    ),
+  );
+}

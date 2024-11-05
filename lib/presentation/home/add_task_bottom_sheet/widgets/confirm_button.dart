@@ -1,8 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app/core/utils/dialog_utils.dart';
 import 'package:todo_app/core/widgets/default_button.dart';
-import 'package:todo_app/presentation/home/add_task_bottom_sheet/model/task_model.dart';
+import 'package:todo_app/database/collections/tasks_collection.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:todo_app/providers/auth_provider.dart';
 
 class ConfirmButton extends StatelessWidget {
   final TextEditingController taskTitleController;
@@ -27,24 +29,36 @@ class ConfirmButton extends StatelessWidget {
 
   void onDonePressed(BuildContext context) {
     if (formKey.currentState?.validate() ?? false) {
-      FirebaseFirestore db = FirebaseFirestore.instance;
-      CollectionReference<Map<String, dynamic>> collectionReference =
-          db.collection(TaskDM.collectionName);
-      DocumentReference<Map<String, dynamic>> documentReference =
-          collectionReference.doc();
-      TaskDM newTask = TaskDM(
-        id: documentReference.id,
+      addNewTask(context);
+    }
+  }
+
+  void addNewTask(BuildContext context) async {
+    String userId = context.read<AppAuthProvider>().getUserId()!;
+    TasksCollection tasksCollection = TasksCollection();
+    try {
+      showLoadingDialog(context);
+      await tasksCollection.saveTasksToFireStore(
+        userId: userId,
         title: taskTitleController.text,
         description: taskDescriptionController.text,
-        dateTime: datePickerSelectedDate,
-        state: false,
+        date: datePickerSelectedDate,
       );
-      documentReference.set(newTask.toJson()).timeout(
-        const Duration(milliseconds: 500),
-        onTimeout: () {
-          if (context.mounted) Navigator.pop(context);
-        },
-      );
+      if (context.mounted) {
+        hideLoadingDialog(context);
+        Navigator.pop(context);
+      }
+    } catch (e) {
+      String message = 'Something went wrong: ${e.toString()}';
+      print(e.toString());
+      if (context.mounted) {
+        hideLoadingDialog(context);
+        showMessageDialog(
+          context,
+          message: message,
+          posActionTitle: 'Try Again',
+        );
+      }
     }
   }
 }

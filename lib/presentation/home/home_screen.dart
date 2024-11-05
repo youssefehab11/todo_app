@@ -14,17 +14,18 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
-  GlobalKey<TasksTabState> tasksTapKey = GlobalKey<TasksTabState>();
-  List<Widget> tabs = [];
+  List<Widget> tabs = const [
+    TasksTab(),
+    SettingsTab(),
+  ];
 
-  @override
-  void initState() {
-    super.initState();
-    tabs = [
-      TasksTab(key: tasksTapKey),
-      const SettingsTab(),
-    ];
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   tabs = [
+
+  //   ];
+  //}
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: onAddNewTaskPressed,
+        onPressed: () => onAddNewTaskPressed(),
         child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -74,6 +75,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void onAddNewTaskPressed() async {
     await showTaskBottomSheet(context);
-    tasksTapKey.currentState?.getTasks();
+    //tasksTapKey.currentState?.getTasks();
   }
 }

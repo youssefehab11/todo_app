@@ -134,11 +134,11 @@ class RegisterUserActions extends StatelessWidget {
   void createAccount(BuildContext context) async {
     try {
       showLoadingDialog(context);
-      final credential =
-          await context.read<AppAuthProvider>().createUserWithEmailAndPassword(
-                emailController.text,
-                passwordController.text,
-              );
+      await context.read<AppAuthProvider>().createUserWithEmailAndPassword(
+            emailController.text,
+            passwordController.text,
+            fullNameController.text,
+          );
 
       if (context.mounted) hideLoadingDialog(context);
       if (context.mounted) {

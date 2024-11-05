@@ -96,11 +96,10 @@ class LoginUserActions extends StatelessWidget {
   void login(BuildContext context) async {
     try {
       showLoadingDialog(context);
-      final credential =
-          await context.read<AppAuthProvider>().signInWithEmailAndPassword(
-                emailController.text,
-                passwordController.text,
-              );
+      await context.read<AppAuthProvider>().signInWithEmailAndPassword(
+            emailController.text,
+            passwordController.text,
+          );
       if (context.mounted) hideLoadingDialog(context);
       if (context.mounted) {
         showMessageDialog(
