@@ -17,7 +17,8 @@ bool isEnglish(BuildContext context) {
 }
 
 extension FormatDate on DateTime {
-  String get getFormatDate => '$day - $month - $year';
+  String get stringFormatDate => '$day - $month - $year';
+  DateTime get formatDate => DateTime(year, month, day);
   String getDayName(BuildContext context) {
     final appLocalizations = AppLocalizations.of(context)!;
     switch (weekday) {

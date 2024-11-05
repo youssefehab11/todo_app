@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:todo_app/core/utils/colors_manager.dart';
+import 'package:todo_app/database/models/task_model.dart';
 import 'package:todo_app/presentation/home/tabs/tasks/widgets/slidable_item_content.dart';
 
+typedef OnDeleteTaskPressed = Function(TaskDM task);
+
 class SlidableItem extends StatelessWidget {
-  final String taskTitle;
-  final String taskDescription;
-  const SlidableItem({
-    super.key,
-    required this.taskTitle,
-    required this.taskDescription,
-  });
+  final TaskDM task;
+  final OnDeleteTaskPressed onDeleteTaskPressed;
+  const SlidableItem(
+      {super.key, required this.task, required this.onDeleteTaskPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,9 @@ class SlidableItem extends StatelessWidget {
           motion: const DrawerMotion(),
           children: [
             SlidableAction(
-              onPressed: (context) {},
+              onPressed: (buildContext) {
+                onDeleteTaskPressed(task);
+              },
               //borderRadius: BorderRadius.horizontal(left: Radius.circular(15)),
               autoClose: true,
               backgroundColor: ColorsManager.redColor,
@@ -48,8 +50,8 @@ class SlidableItem extends StatelessWidget {
           ],
         ),
         child: SlidableItemContent(
-          taskTitle: taskTitle,
-          taskDescription: taskDescription,
+          taskTitle: task.title ?? '',
+          taskDescription: task.description ?? '',
         ),
       ),
     );

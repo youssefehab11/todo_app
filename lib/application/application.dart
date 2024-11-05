@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     SettingsProvider provider = Provider.of<SettingsProvider>(context);
     return MaterialApp(
       onGenerateRoute: (settings) => RouteManager.onGenerateRoute(settings),
-      initialRoute: context.read<AppAuthProvider>().currentUser == null
+      initialRoute: context.read<AppAuthProvider>().authUser == null
           ? Routes.loginRoute
           : Routes.homeRoute,
       localizationsDelegates: AppLocalizations.localizationsDelegates,

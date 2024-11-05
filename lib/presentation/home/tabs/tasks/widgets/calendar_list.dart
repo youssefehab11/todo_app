@@ -7,8 +7,11 @@ import 'package:todo_app/core/utils/styles.dart';
 class CalendarList extends StatelessWidget {
   final DateTime focusedDate;
   final Function(DateTime) onDateChange;
-  const CalendarList(
-      {super.key, required this.focusedDate, required this.onDateChange});
+  const CalendarList({
+    super.key,
+    required this.focusedDate,
+    required this.onDateChange,
+  });
 
   @override
   Widget build(BuildContext context) {

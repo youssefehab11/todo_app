@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/database/models/task_model.dart';
 import 'package:todo_app/presentation/home/tabs/tasks/widgets/slidable_item.dart';
 import 'package:todo_app/presentation/home/tabs/tasks/widgets/task_item_bg.dart';
 
 class TaskItem extends StatelessWidget {
-  final String taskTitle;
-  final String taskDescription;
-  const TaskItem(
-      {super.key, required this.taskTitle, required this.taskDescription});
+  final TaskDM task;
+  final OnDeleteTaskPressed onDeleteTaskPressed;
+  const TaskItem({
+    super.key,
+    required this.task,
+    required this.onDeleteTaskPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +21,8 @@ class TaskItem extends StatelessWidget {
         children: [
           const TaskItemBG(),
           SlidableItem(
-            taskTitle: taskTitle,
-            taskDescription: taskDescription,
+            task: task,
+            onDeleteTaskPressed: onDeleteTaskPressed,
           )
         ],
       ),
