@@ -30,6 +30,8 @@ class _EditTaskDialogState extends State<EditTaskDialog> {
     super.initState();
     taskTitleController = TextEditingController();
     taskDescriptionController = TextEditingController();
+    taskTitleController.text = widget.task.title!;
+    taskDescriptionController.text = widget.task.description!;
     selectedDate = widget.task.dateTime!;
   }
 
@@ -44,9 +46,6 @@ class _EditTaskDialogState extends State<EditTaskDialog> {
   Widget build(BuildContext context) {
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     Size size = MediaQuery.sizeOf(context);
-    taskTitleController.text = widget.task.title!;
-    taskDescriptionController.text = widget.task.description!;
-
     return AlertDialog(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       elevation: 0,
