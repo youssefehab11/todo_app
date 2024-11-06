@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -7,6 +6,8 @@ import 'package:todo_app/database/collections/tasks_collection.dart';
 import 'package:todo_app/database/models/task_model.dart';
 import 'package:todo_app/presentation/home/tabs/tasks/widgets/task_item.dart';
 import 'package:todo_app/providers/auth_provider.dart';
+import 'package:todo_app/presentation/home/edit_task_dialog/edit_task_dialog.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TasksList extends StatefulWidget {
   final DateTime selectedDate;
@@ -19,9 +20,10 @@ class TasksList extends StatefulWidget {
 class _TasksListState extends State<TasksList> {
   TasksCollection tasksCollection = TasksCollection();
   List<TaskDM> tasks = [];
+
   @override
   Widget build(BuildContext context) {
-    log('Build tasks list >>>>>>>>>');
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return StreamBuilder<QuerySnapshot<TaskDM>>(
       stream: tasksCollection.getTasksFromFireStore(
           context.read<AppAuthProvider>().authUser!.uid, widget.selectedDate),
@@ -32,12 +34,12 @@ class _TasksListState extends State<TasksList> {
             child: Center(
               child: Column(
                 children: [
-                  const Text('Something went wrong!'),
+                  Text(appLocalizations.somethingWentWrong),
                   ElevatedButton(
                     onPressed: () {
                       setState(() {});
                     },
-                    child: const Text('Try again'),
+                    child: Text(appLocalizations.tryAgain),
                   )
                 ],
               ),
@@ -66,6 +68,7 @@ class _TasksListState extends State<TasksList> {
                 return TaskItem(
                   task: tasks[index],
                   onDeleteTaskPressed: onDeleteTaskPressed,
+                  onEditTaskPressed: onEditTaskPressed,
                 );
               },
             ),
@@ -76,14 +79,15 @@ class _TasksListState extends State<TasksList> {
   }
 
   void onDeleteTaskPressed(TaskDM task) {
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     showMessageDialog(
       context,
-      message: 'Are you sure, you want ro delete task?',
-      posActionTitle: 'Confirm',
+      message: appLocalizations.confirmDeleteTask,
+      posActionTitle: appLocalizations.confirm,
       posAction: () {
         deleteTask(task);
       },
-      negActionTitle: 'Cancel',
+      negActionTitle: appLocalizations.cancel,
     );
   }
 
@@ -100,8 +104,13 @@ class _TasksListState extends State<TasksList> {
       if (mounted) {
         hideLoadingDialog(context);
         showMessageDialog(context,
-            message: 'Something went wrong', posActionTitle: 'ok');
+            message: AppLocalizations.of(context)!.somethingWentWrong,
+            posActionTitle: AppLocalizations.of(context)!.ok);
       }
     }
+  }
+
+  void onEditTaskPressed(TaskDM task) {
+    showEditTaskDialogg(context, task);
   }
 }
