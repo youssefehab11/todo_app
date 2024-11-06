@@ -52,28 +52,40 @@ class LoginUserActions extends StatelessWidget {
   }
 
   Widget buildEmailFieldItem(BuildContext context) {
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return InputFieldItem(
-      label: AppLocalizations.of(context)!.emailAddress,
-      hintText: AppLocalizations.of(context)!.emailAddressHint,
+      label: appLocalizations.emailAddress,
+      hintText: appLocalizations.emailAddressHint,
       controller: emailController,
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
       validator: (input) {
-        return emailVaildator(input);
+        EmailValidator emailValidator = EmailValidator(
+          fieldName: appLocalizations.emailAddress,
+          emptyFieldErrorMessage: appLocalizations.cantBeEmpty,
+          fieldErrorMessage: appLocalizations.enterCorrectEmail,
+        );
+        return emailValidator.validate(input);
       },
     );
   }
 
   Widget buildPasswordFieldItem(BuildContext context) {
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return InputFieldItem(
-      label: AppLocalizations.of(context)!.password,
-      hintText: AppLocalizations.of(context)!.passwordHint,
+      label: appLocalizations.password,
+      hintText: appLocalizations.passwordHint,
       controller: passwordController,
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.done,
       isObscure: true,
       validator: (input) {
-        return passwordValidator(input);
+        PasswordValidator passwordValidator = PasswordValidator(
+          fieldName: appLocalizations.password,
+          emptyFieldErrorMessage: appLocalizations.cantBeEmpty,
+          fieldErrorMessage: appLocalizations.passwordTooWeak,
+        );
+        return passwordValidator.validate(input);
       },
     );
   }
@@ -94,6 +106,7 @@ class LoginUserActions extends StatelessWidget {
   }
 
   void login(BuildContext context) async {
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     try {
       showLoadingDialog(context);
       await context.read<AppAuthProvider>().signInWithEmailAndPassword(
@@ -104,23 +117,24 @@ class LoginUserActions extends StatelessWidget {
       if (context.mounted) {
         showMessageDialog(
           context,
-          message: 'Logged In successfully',
-          posActionTitle: 'Ok',
+          message: appLocalizations.loggedInSuccessfully,
+          posActionTitle: appLocalizations.ok,
           posAction: () {
             Navigator.of(context).pushReplacementNamed(Routes.homeRoute);
           },
         );
       }
     } on FirebaseAuthException catch (e) {
-      String message = 'Something went wrong';
+      String message = appLocalizations.somethingWentWrong;
       if (context.mounted) hideLoadingDialog(context);
       if (e.code == FirebaseCodes.userNotFound ||
           e.code == FirebaseCodes.wrongPassword ||
           e.code == FirebaseCodes.invalidCredential) {
-        message = 'Wrong email or password.';
+        message = appLocalizations.wrongEmailOrPassword;
       }
       if (context.mounted) {
-        showMessageDialog(context, message: message, posActionTitle: 'Ok');
+        showMessageDialog(context,
+            message: message, posActionTitle: appLocalizations.ok);
       }
     }
   }

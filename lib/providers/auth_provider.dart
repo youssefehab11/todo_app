@@ -50,8 +50,8 @@ class AppAuthProvider extends ChangeNotifier {
     if (userCredential.user != null) login(userCredential.user!);
   }
 
-  void logout() async {
-    await FirebaseAuth.instance.signOut();
+  Future<void> logout() {
     authUser = null;
+    return FirebaseAuth.instance.signOut();
   }
 }

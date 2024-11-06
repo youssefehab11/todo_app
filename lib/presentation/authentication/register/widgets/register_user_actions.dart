@@ -62,56 +62,80 @@ class RegisterUserActions extends StatelessWidget {
   }
 
   Widget buildFullNameField(BuildContext context) {
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return InputFieldItem(
-      label: AppLocalizations.of(context)!.fullName,
+      label: appLocalizations.fullName,
       hintText: AppLocalizations.of(context)!.fullNameHint,
       keyboardType: TextInputType.name,
       textInputAction: TextInputAction.next,
       controller: fullNameController,
       validator: (input) {
-        return fullNameValidator(input);
+        FullNameValidaror fullNameValidaror = FullNameValidaror(
+          fieldName: appLocalizations.fullName,
+          emptyFieldErrorMessage: appLocalizations.cantBeEmpty,
+          fieldErrorMessage: appLocalizations.fullNameFieldError,
+        );
+        return fullNameValidaror.validate(input);
       },
     );
   }
 
   Widget buildEmailField(BuildContext context) {
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return InputFieldItem(
-      label: AppLocalizations.of(context)!.emailAddress,
-      hintText: AppLocalizations.of(context)!.emailAddressHint,
+      label: appLocalizations.emailAddress,
+      hintText: appLocalizations.emailAddressHint,
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
       controller: emailController,
       validator: (input) {
-        return emailVaildator(input);
+        EmailValidator emailValidator = EmailValidator(
+          fieldName: appLocalizations.emailAddress,
+          emptyFieldErrorMessage: appLocalizations.cantBeEmpty,
+          fieldErrorMessage: appLocalizations.enterCorrectEmail,
+        );
+        return emailValidator.validate(input);
       },
     );
   }
 
   Widget buildPasswordField(BuildContext context) {
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return InputFieldItem(
-      label: AppLocalizations.of(context)!.password,
-      hintText: AppLocalizations.of(context)!.passwordHint,
+      label: appLocalizations.password,
+      hintText: appLocalizations.passwordHint,
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.next,
       controller: passwordController,
       isObscure: true,
       validator: (input) {
-        return passwordValidator(input);
+        PasswordValidator passwordValidator = PasswordValidator(
+          fieldName: appLocalizations.password,
+          emptyFieldErrorMessage: appLocalizations.cantBeEmpty,
+          fieldErrorMessage: appLocalizations.passwordTooWeak,
+        );
+        return passwordValidator.validate(input);
       },
     );
   }
 
   Widget buildRePasswordField(BuildContext context) {
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     return InputFieldItem(
-      label: AppLocalizations.of(context)!.rePassword,
-      hintText: AppLocalizations.of(context)!.rePasswordHint,
+      label: appLocalizations.rePassword,
+      hintText: appLocalizations.rePasswordHint,
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.done,
       controller: rePasswordController,
       isObscure: true,
       validator: (input) {
-        return rePasswordValidator(
-            password: passwordController.text, rePassword: input);
+        RePasswordValidator passwordValidator = RePasswordValidator(
+          fieldName: appLocalizations.rePassword,
+          emptyFieldErrorMessage: appLocalizations.cantBeEmpty,
+          fieldErrorMessage: appLocalizations.passwordDoesntMatch,
+          password: passwordController.text,
+        );
+        return passwordValidator.validate(input);
       },
     );
   }
@@ -132,6 +156,7 @@ class RegisterUserActions extends StatelessWidget {
   }
 
   void createAccount(BuildContext context) async {
+    AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     try {
       showLoadingDialog(context);
       await context.read<AppAuthProvider>().createUserWithEmailAndPassword(
@@ -144,34 +169,34 @@ class RegisterUserActions extends StatelessWidget {
       if (context.mounted) {
         showMessageDialog(
           context,
-          message: 'Account created successfully',
-          posActionTitle: 'Ok',
+          message: appLocalizations.accountCreatedSuccessfully,
+          posActionTitle: appLocalizations.ok,
           posAction: () =>
               Navigator.of(context).pushReplacementNamed(Routes.homeRoute),
         );
       }
     } on FirebaseAuthException catch (e) {
       if (context.mounted) hideLoadingDialog(context);
-      String message = 'Something wnt wrong';
+      String message = appLocalizations.somethingWentWrong;
       if (e.code == FirebaseCodes.weakPassword) {
-        message = 'The password provided is too weak.';
+        message = appLocalizations.weakPassword;
       } else if (e.code == FirebaseCodes.emailAlreadyInUse) {
-        message = 'The account already exists for that email.';
+        message = appLocalizations.emailAlreadyExists;
       }
       if (context.mounted) {
         showMessageDialog(
           context,
           message: message,
-          posActionTitle: 'ok',
+          posActionTitle: appLocalizations.ok,
         );
       }
     } catch (e) {
-      String message = 'Something wnt wrong';
+      String message = appLocalizations.somethingWentWrong;
       if (context.mounted) {
         showMessageDialog(
           context,
           message: message,
-          posActionTitle: 'ok',
+          posActionTitle: appLocalizations.ok,
         );
       }
     }
