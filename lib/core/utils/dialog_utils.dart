@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void showLoadingDialog(BuildContext context) {
   showDialog(
@@ -8,13 +9,13 @@ void showLoadingDialog(BuildContext context) {
       return AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         elevation: 0,
-        content: const Row(
+        content: Row(
           children: [
-            CircularProgressIndicator(),
-            SizedBox(
+            const CircularProgressIndicator(),
+            const SizedBox(
               width: 16,
             ),
-            Text('Please wait...')
+            Text(AppLocalizations.of(context)!.pleaseWait)
           ],
         ),
       );

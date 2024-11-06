@@ -28,6 +28,7 @@ class TaskInfo extends StatelessWidget {
         buildTaskDescription(context),
         SizedBox(height: size.height * 0.025),
         buildSelectDateLabel(context),
+        SizedBox(height: size.height * 0.025),
         buildDate(context),
       ],
     );

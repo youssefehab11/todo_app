@@ -46,17 +46,20 @@ class ConfirmButton extends StatelessWidget {
       );
       if (context.mounted) {
         hideLoadingDialog(context);
-        Navigator.pop(context);
+        showMessageDialog(context,
+            message: AppLocalizations.of(context)!.addedTaskSuccessfully,
+            posActionTitle: AppLocalizations.of(context)!.ok, posAction: () {
+          Navigator.of(context).pop();
+        });
       }
     } catch (e) {
-      String message = 'Something went wrong: ${e.toString()}';
-      print(e.toString());
       if (context.mounted) {
+        String message = AppLocalizations.of(context)!.done;
         hideLoadingDialog(context);
         showMessageDialog(
           context,
           message: message,
-          posActionTitle: 'Try Again',
+          posActionTitle: AppLocalizations.of(context)!.tryAgain,
         );
       }
     }

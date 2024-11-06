@@ -23,15 +23,6 @@ class TasksCollection {
     required String description,
     required DateTime date,
   }) {
-    // FirebaseFirestore db = FirebaseFirestore.instance;
-    // CollectionReference usersCollectionReference =
-    //     db.collection(UserDM.collectionName);
-    // DocumentReference userDocumentReference =
-    //     usersCollectionReference.doc(userId);
-    // CollectionReference tasksCollectionReference =
-    //     userDocumentReference.collection(TaskDM.collectionName);
-    // DocumentReference taskDocumentReference = tasksCollectionReference.doc();
-
     DocumentReference taskDocumentReference = getTasksCollection(userId).doc();
 
     TaskDM newTask = TaskDM(
@@ -55,5 +46,7 @@ class TasksCollection {
     return getTasksCollection(userId).doc(task.id).delete();
   }
 
-  void editTaskInFireStore() {}
+  Future<void> editTaskInFireStore(String userId, TaskDM task) {
+    return getTasksCollection(userId).doc(task.id).update(task.toJson());
+  }
 }

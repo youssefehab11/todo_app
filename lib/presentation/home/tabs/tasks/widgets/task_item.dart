@@ -5,11 +5,13 @@ import 'package:todo_app/presentation/home/tabs/tasks/widgets/task_item_bg.dart'
 
 class TaskItem extends StatelessWidget {
   final TaskDM task;
-  final OnDeleteTaskPressed onDeleteTaskPressed;
+  final OnSlidableActionTaskPressed onDeleteTaskPressed;
+  final OnSlidableActionTaskPressed onEditTaskPressed;
   const TaskItem({
     super.key,
     required this.task,
     required this.onDeleteTaskPressed,
+    required this.onEditTaskPressed,
   });
 
   @override
@@ -23,6 +25,7 @@ class TaskItem extends StatelessWidget {
           SlidableItem(
             task: task,
             onDeleteTaskPressed: onDeleteTaskPressed,
+            onEditTaskPressed: onEditTaskPressed,
           )
         ],
       ),

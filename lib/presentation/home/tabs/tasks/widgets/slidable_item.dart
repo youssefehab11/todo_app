@@ -3,14 +3,20 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:todo_app/core/utils/colors_manager.dart';
 import 'package:todo_app/database/models/task_model.dart';
 import 'package:todo_app/presentation/home/tabs/tasks/widgets/slidable_item_content.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-typedef OnDeleteTaskPressed = Function(TaskDM task);
+typedef OnSlidableActionTaskPressed = Function(TaskDM task);
 
 class SlidableItem extends StatelessWidget {
   final TaskDM task;
-  final OnDeleteTaskPressed onDeleteTaskPressed;
-  const SlidableItem(
-      {super.key, required this.task, required this.onDeleteTaskPressed});
+  final OnSlidableActionTaskPressed onDeleteTaskPressed;
+  final OnSlidableActionTaskPressed onEditTaskPressed;
+  const SlidableItem({
+    super.key,
+    required this.task,
+    required this.onDeleteTaskPressed,
+    required this.onEditTaskPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +30,13 @@ class SlidableItem extends StatelessWidget {
           motion: const DrawerMotion(),
           children: [
             SlidableAction(
-              onPressed: (buildContext) {
+              onPressed: (context) {
                 onDeleteTaskPressed(task);
               },
-              //borderRadius: BorderRadius.horizontal(left: Radius.circular(15)),
               autoClose: true,
               backgroundColor: ColorsManager.redColor,
               icon: Icons.delete,
-              label: 'Delete',
+              label: AppLocalizations.of(context)!.delete,
             )
           ],
         ),
@@ -40,18 +45,18 @@ class SlidableItem extends StatelessWidget {
           motion: const DrawerMotion(),
           children: [
             SlidableAction(
-              onPressed: (context) {},
-              //borderRadius: BorderRadius.horizontal(left: Radius.circular(15)),
+              onPressed: (context) {
+                onEditTaskPressed(task);
+              },
               autoClose: true,
               backgroundColor: theme.primaryColor,
               icon: Icons.edit,
-              label: 'Edit',
+              label: AppLocalizations.of(context)!.edit,
             )
           ],
         ),
         child: SlidableItemContent(
-          taskTitle: task.title ?? '',
-          taskDescription: task.description ?? '',
+          task: task,
         ),
       ),
     );

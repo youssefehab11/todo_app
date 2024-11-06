@@ -11,4 +11,5 @@ class ColorsManager {
   static const darkColor = Color(0xFF141922);
   static const darkBackGround = Color(0xFF060E1E);
   static const darkTextGrayColor = Color(0xCDCACAE8);
+  static const greenColor = Color(0xFF61E757);
 }
