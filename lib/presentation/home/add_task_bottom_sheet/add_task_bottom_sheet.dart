@@ -21,38 +21,41 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return Container(
-      height: size.height * 0.48,
-      padding: const EdgeInsets.all(16.0),
-      margin: MediaQuery.viewInsetsOf(context),
-      child: Center(
-        child: Form(
-          key: formKey,
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Column(
-              children: [
-                TaskLabel(
-                  taskLabel: AppLocalizations.of(context)!.bottomSheetTitle,
-                ),
-                SizedBox(
-                  height: size.height * 0.025,
-                ),
-                TaskInfo(
-                  selectedDate: selectedDate,
-                  onDatePressed: showDatePickerCalendar,
-                  taskTitleController: taskTitleController,
-                  taskDescriptionController: taskDescriptionController,
-                ),
-                SizedBox(height: size.height * 0.02),
-                ConfirmButton(
-                  formKey: formKey,
-                  taskTitleController: taskTitleController,
-                  taskDescriptionController: taskDescriptionController,
-                  datePickerSelectedDate: selectedDate,
-                ),
-                SizedBox(height: size.height * 0.025),
-              ],
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Container(
+        height: size.height * 0.48,
+        padding: const EdgeInsets.all(16.0),
+        margin: MediaQuery.viewInsetsOf(context),
+        child: Center(
+          child: Form(
+            key: formKey,
+            child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                children: [
+                  TaskLabel(
+                    taskLabel: AppLocalizations.of(context)!.bottomSheetTitle,
+                  ),
+                  SizedBox(
+                    height: size.height * 0.025,
+                  ),
+                  TaskInfo(
+                    selectedDate: selectedDate,
+                    onDatePressed: showDatePickerCalendar,
+                    taskTitleController: taskTitleController,
+                    taskDescriptionController: taskDescriptionController,
+                  ),
+                  SizedBox(height: size.height * 0.02),
+                  ConfirmButton(
+                    formKey: formKey,
+                    taskTitleController: taskTitleController,
+                    taskDescriptionController: taskDescriptionController,
+                    datePickerSelectedDate: selectedDate,
+                  ),
+                  SizedBox(height: size.height * 0.025),
+                ],
+              ),
             ),
           ),
         ),
@@ -78,7 +81,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
   }
 }
 
-Future<dynamic> showTaskBottomSheet(BuildContext context) {
+Future<Widget?> showTaskBottomSheet(BuildContext context) {
   return showModalBottomSheet(
     isScrollControlled: true,
     context: context,

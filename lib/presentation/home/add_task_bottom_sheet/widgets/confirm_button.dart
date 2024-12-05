@@ -36,6 +36,7 @@ class ConfirmButton extends StatelessWidget {
   void addNewTask(BuildContext context) async {
     String userId = context.read<AppAuthProvider>().getUserId()!;
     TasksCollection tasksCollection = TasksCollection();
+    FocusManager.instance.primaryFocus?.unfocus();
     try {
       showLoadingDialog(context);
       await tasksCollection.saveTasksToFireStore(

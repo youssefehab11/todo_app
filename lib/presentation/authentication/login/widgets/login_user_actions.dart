@@ -107,6 +107,7 @@ class LoginUserActions extends StatelessWidget {
 
   void login(BuildContext context) async {
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+    FocusManager.instance.primaryFocus?.unfocus();
     try {
       showLoadingDialog(context);
       await context.read<AppAuthProvider>().signInWithEmailAndPassword(

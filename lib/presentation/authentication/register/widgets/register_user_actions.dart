@@ -157,6 +157,7 @@ class RegisterUserActions extends StatelessWidget {
 
   void createAccount(BuildContext context) async {
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+    FocusManager.instance.primaryFocus?.unfocus();
     try {
       showLoadingDialog(context);
       await context.read<AppAuthProvider>().createUserWithEmailAndPassword(

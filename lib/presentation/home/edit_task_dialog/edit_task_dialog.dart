@@ -46,42 +46,45 @@ class _EditTaskDialogState extends State<EditTaskDialog> {
   Widget build(BuildContext context) {
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
     Size size = MediaQuery.sizeOf(context);
-    return AlertDialog(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      content: SizedBox(
-        height: size.height * 0.5,
-        width: size.width * 1.7,
-        child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Form(
-            key: formKey,
-            child: Column(
-              children: [
-                TaskLabel(
-                  taskLabel: appLocalizations.editTaskLabel,
-                ),
-                SizedBox(
-                  height: size.height * 0.05,
-                ),
-                TaskInfo(
-                  selectedDate: selectedDate,
-                  onDatePressed: (context) => showDatePickerCalendar(),
-                  taskTitleController: taskTitleController,
-                  taskDescriptionController: taskDescriptionController,
-                ),
-                SizedBox(height: size.height * 0.05),
-                DefaultButton(
-                  btnText: appLocalizations.saveChanges,
-                  onPressed: () {
-                    onSaveChangesPressed(widget.task);
-                  },
-                ),
-                SizedBox(height: size.height * 0.025),
-              ],
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: AlertDialog(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+        content: SizedBox(
+          height: size.height * 0.5,
+          width: size.width * 1.7,
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Form(
+              key: formKey,
+              child: Column(
+                children: [
+                  TaskLabel(
+                    taskLabel: appLocalizations.editTaskLabel,
+                  ),
+                  SizedBox(
+                    height: size.height * 0.05,
+                  ),
+                  TaskInfo(
+                    selectedDate: selectedDate,
+                    onDatePressed: (context) => showDatePickerCalendar(),
+                    taskTitleController: taskTitleController,
+                    taskDescriptionController: taskDescriptionController,
+                  ),
+                  SizedBox(height: size.height * 0.05),
+                  DefaultButton(
+                    btnText: appLocalizations.saveChanges,
+                    onPressed: () {
+                      onSaveChangesPressed(widget.task);
+                    },
+                  ),
+                  SizedBox(height: size.height * 0.025),
+                ],
+              ),
             ),
           ),
         ),
@@ -104,6 +107,7 @@ class _EditTaskDialogState extends State<EditTaskDialog> {
     TasksCollection tasksCollection = TasksCollection();
     String userId = context.read<AppAuthProvider>().authUser!.uid;
     AppLocalizations appLocalizations = AppLocalizations.of(context)!;
+    FocusManager.instance.primaryFocus?.unfocus();
     try {
       showLoadingDialog(context);
       task.title = taskTitleController.text;

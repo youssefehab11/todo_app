@@ -60,6 +60,12 @@ class AppTheme {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       yearForegroundColor: const WidgetStatePropertyAll(Colors.black),
     ),
+    dialogTheme: DialogTheme(
+      contentTextStyle: LightTextStyles.text15WeightBold,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      elevation: 0,
+      backgroundColor: Colors.white,
+    ),
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -118,6 +124,12 @@ class AppTheme {
       backgroundColor: ColorsManager.darkColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       yearForegroundColor: const WidgetStatePropertyAll(Colors.white),
+    ),
+    dialogTheme: DialogTheme(
+      contentTextStyle: DarkTextStyles.text15WeightBold,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      elevation: 0,
+      backgroundColor: ColorsManager.darkColor,
     ),
   );
 }
