@@ -7,8 +7,8 @@ void showLoadingDialog(BuildContext context) {
     barrierDismissible: false,
     builder: (context) {
       return AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        elevation: 0,
+        // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        // elevation: 0,
         content: Row(
           children: [
             const CircularProgressIndicator(),
@@ -46,7 +46,8 @@ void showMessageDialog(
     ),
   ];
   if (negActionTitle != null) {
-    actions.add(
+    actions.insert(
+      0,
       TextButton(
         onPressed: () {
           Navigator.pop(context);
